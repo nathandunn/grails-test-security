@@ -53,12 +53,17 @@
         <section class="row colset-2-its">
             <h1>Welcome to Grails</h1>
 
-            <p>
-                Congratulations, you have successfully started your first Grails application! At the moment
-                this is the default page, feel free to modify it to either redirect to a controller or display
-                whatever content you may choose. Below is a list of controllers that are currently deployed in
-                this application, click on each to execute its default action:
-            </p>
+            <div>
+                Link is here:
+                %{--               <sec:ifNotLoggedIn>--}%
+                <g:render template="/auth/loginWithGoogle"/>
+                %{--               </sec:ifNotLoggedIn>--}%
+                %{--               <sec:ifLoggedIn>--}%
+                %{--                   <g:form controller="logout" style="display: inline;">--}%
+                %{--                       <input type="submit" value="${g.message(code: "logout", default:"Logout")}"/>--}%
+                %{--                   </g:form>--}%
+                %{--               </sec:ifLoggedIn>--}%
+            </div>
 
             <div id="controllers" role="navigation">
                 <h2>Available Controllers:</h2>

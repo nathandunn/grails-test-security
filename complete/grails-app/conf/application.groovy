@@ -9,6 +9,19 @@ grails {
                         }
                     }
                 }
+                oauth {
+
+//                    frontendCallbackUrl = { String tokenValue -> "http://localhost/welcome#token=${tokenValue}" }
+                    frontendCallbackUrl = { String tokenValue -> "http://localhost:8080/auth/success?token=${tokenValue}" } //<4>
+
+                    google {
+                        client = org.pac4j.oauth.client.Google2Client
+                        key = "${System.getenv().get('GOOGLE_KEY')}" //<6>
+                        secret = "${System.getenv().get('GOOGLE_SECRET')}" //<7>
+                        scope = org.pac4j.oauth.client.Google2Client.Google2Scope.EMAIL_AND_PROFILE
+                        defaultRoles = ['ROLE_USER', 'ROLE_GOOGLE']
+                    }
+                }
             }
             securityConfigType = "InterceptUrlMap"  // <1>
             filterChain {
